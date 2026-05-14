@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Buddhānubuddha Pavat – Quiz 4 · Desktop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Cormorant:ital,wght@1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090804;
+  --sidebar:#0e0c07;
+  --surface:#131009;
+  --surface2:#1a1510;
+  --surface3:#221c0e;
+  --gold:#c8a44e;
+  --gold-bright:#e0bc6e;
+  --gold-dim:#7a5f20;
+  --gold-faint:#3a2c0e;
+  --text:#e2d4b0;
+  --text-mid:#9a8a68;
+  --text-dim:#5a4e36;
+  --text-faint:#2e2818;
+  --green:#4e8a5e;
+  --green-bg:#0e1e12;
+  --red:#9a5030;
+  --red-bg:#1e0e08;
+  --border:#1e1a0e;
+  --border2:#2e2818;
+  --border3:#3e3422;
+  --sidebar-w:280px;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{display:flex;font-family:'Cormorant Garamond',Georgia,serif;color:var(--text);
+  background-image:
+    radial-gradient(ellipse at 30% 0%,rgba(180,130,40,.04) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 100%,rgba(100,70,10,.06) 0%,transparent 45%)}
+
+/* ── Sidebar ── */
+#sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  height:100vh;
+  background:var(--sidebar);
+  border-right:1px solid var(--border2);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  position:relative;
+}
+#sidebar::after{
+  content:'';position:absolute;top:0;right:0;width:1px;height:100%;
+  background:linear-gradient(to bottom,transparent,var(--gold-dim) 30%,var(--gold-dim) 70%,transparent);
+  opacity:.3;
+}
+.sidebar-header{
+  padding:32px 24px 24px;
+  border-bottom:1px solid var(--border2);
+  flex-shrink:0;
+}
+.sidebar-dharma{font-size:22px;opacity:.7;margin-bottom:8px;letter-spacing:.1em}
+.sidebar-title{font-family:'Cinzel',serif;font-size:11px;font-weight:500;
+  letter-spacing:.18em;color:var(--gold);text-transform:uppercase;line-height:1.6;
+  margin-bottom:4px}
+.sidebar-subtitle{font-size:11px;color:var(--text-dim);font-style:italic;letter-spacing:.04em}
+
+/* Score panel */
+.score-panel{
+  padding:20px 24px;
+  border-bottom:1px solid var(--border2);
+  flex-shrink:0;
+}
+.score-panel-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.score-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.score-cell{text-align:center;background:var(--surface);border:1px solid var(--border2);
+  border-radius:8px;padding:10px 4px}
+.score-num{font-size:22px;font-weight:300;line-height:1}
+.score-lbl{font-size:9px;letter-spacing:.08em;color:var(--text-dim);margin-top:4px;text-transform:uppercase}
+.score-num.green{color:var(--green)}.score-num.red{color:var(--red)}.score-num.gold{color:var(--gold)}
+.progress-bar{height:2px;background:var(--border2);border-radius:1px;margin-top:14px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold-bright));
+  border-radius:1px;transition:width .6s ease;width:0%}
+
+/* Chapter list */
+.chapter-list-header{
+  padding:16px 24px 10px;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-dim);flex-shrink:0;
+}
+.chapter-list{flex:1;overflow-y:auto;padding:0 12px 16px;scrollbar-width:thin;
+  scrollbar-color:var(--border3) transparent}
+.chapter-list::-webkit-scrollbar{width:3px}
+.chapter-list::-webkit-scrollbar-track{background:transparent}
+.chapter-list::-webkit-scrollbar-thumb{background:var(--border3);border-radius:2px}
+.chapter-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px;border-radius:8px;cursor:pointer;
+  font-size:13px;color:var(--text-mid);letter-spacing:.02em;
+  transition:all .2s;margin-bottom:2px;border:1px solid transparent;
+}
+.chapter-item:hover{background:var(--surface2);color:var(--text);border-color:var(--border2)}
+.chapter-item.active{background:var(--gold-faint);color:var(--gold-bright);
+  border-color:var(--gold-dim)}
+.chapter-item .ch-label{font-size:11px;font-family:'Cinzel',serif;letter-spacing:.06em}
+.chapter-item .ch-count{font-size:10px;color:var(--text-dim);
+  background:var(--border2);border-radius:10px;padding:1px 7px}
+.chapter-item.active .ch-count{background:var(--gold-dim);color:var(--bg)}
+
+/* Keyboard hints */
+.kb-hints{
+  padding:16px 24px;border-top:1px solid var(--border2);flex-shrink:0;
+}
+.kb-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.kb-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px;color:var(--text-dim)}
+.kb-key{background:var(--surface2);border:1px solid var(--border3);border-radius:4px;
+  padding:2px 7px;font-size:10px;font-family:'Cinzel',serif;color:var(--text-mid);
+  box-shadow:0 1px 0 var(--border3)}
+
+/* ── Main area ── */
+#main{
+  flex:1;height:100vh;display:flex;flex-direction:column;overflow:hidden;
+  padding:40px 56px 36px;
+}
+
+/* Top bar */
+.main-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:36px;flex-shrink:0;
+}
+.chapter-label{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-dim);
+}
+.nav-controls{display:flex;align-items:center;gap:12px}
+.nav-btn{
+  background:var(--surface);border:1px solid var(--border3);color:var(--text-mid);
+  width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.nav-btn:hover:not(:disabled){background:var(--surface3);color:var(--gold);border-color:var(--gold-dim)}
+.nav-btn:disabled{opacity:.2;cursor:default}
+.nav-count{font-size:13px;color:var(--text-dim);min-width:52px;text-align:center;letter-spacing:.04em}
+.shuffle-btn{
+  background:none;border:1px solid var(--border3);color:var(--text-dim);
+  padding:8px 16px;border-radius:8px;font-family:'Cormorant Garamond',serif;
+  font-size:13px;cursor:pointer;letter-spacing:.05em;transition:all .2s;
+}
+.shuffle-btn:hover{color:var(--gold);border-color:var(--gold-dim)}
+
+/* Card area */
+.card-area{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  min-height:0;
+}
+
+/* Card */
+.card-wrapper{
+  width:100%;max-width:760px;
+  perspective:1400px;
+  cursor:pointer;
+}
+.card{
+  position:relative;
+  height:clamp(340px,42vh,520px);
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,.15,.2,1);
+}
+.card.flipped{transform:rotateY(180deg)}
+.card-face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  padding:44px 52px 40px;
+  display:flex;flex-direction:column;
+  transition:box-shadow .3s;
+}
+.card-face:hover{box-shadow:0 4px 40px rgba(180,130,40,.06)}
+.card-face.back{
+  transform:rotateY(180deg);
+  background:var(--surface2);
+  border-color:var(--border3);
+  box-shadow:0 8px 60px rgba(160,110,20,.1);
+}
+/* Decorative corner lines */
+.card-face::before,.card-face::after{
+  content:'';position:absolute;
+  width:40px;height:40px;
+  opacity:.2;
+}
+.card-face::before{top:16px;left:16px;
+  border-top:1px solid var(--gold);border-left:1px solid var(--gold);border-radius:4px 0 0 0}
+.card-face::after{bottom:16px;right:16px;
+  border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);border-radius:0 0 4px 0}
+
+.card-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;margin-bottom:16px}
+.q-label{color:#4a3e26}.a-label{color:#7a5e2a}
+.year-tags{font-size:12px;color:var(--text-faint);margin-bottom:16px;letter-spacing:.04em;font-style:italic}
+.question-text{font-size:clamp(18px,2vw,24px);line-height:1.65;color:#d8c898;flex:1;font-weight:300}
+.answer-text{font-size:clamp(14px,1.4vw,17px);line-height:1.9;color:#bca87a;flex:1;
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border3) transparent}
+.answer-text::-webkit-scrollbar{width:3px}
+.answer-text::-webkit-scrollbar-thumb{background:var(--border3)}
+.flip-hint{margin-top:20px;font-size:11px;color:var(--text-faint);
+  letter-spacing:.08em;font-style:italic;font-family:'Cormorant',serif}
+.status-badge{position:absolute;top:18px;right:22px;font-size:26px;
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.status-badge.visible{opacity:1}
+.status-known{color:var(--green)}.status-review{color:var(--red)}
+
+/* Action buttons */
+.action-row{
+  display:flex;gap:14px;margin-top:28px;flex-shrink:0;
+  max-width:760px;width:100%;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s,transform .3s;pointer-events:none;
+}
+.action-row.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.act-btn{
+  flex:1;padding:14px 20px;
+  font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.05em;
+  border-radius:12px;border:1px solid transparent;cursor:pointer;
+  transition:all .2s;
+}
+.act-btn:hover{transform:translateY(-1px)}
+.act-btn:active{transform:translateY(0)}
+.btn-review{background:var(--red-bg);color:#c06840;border-color:var(--red)}
+.btn-review:hover{background:#2a1008;border-color:#b05830}
+.btn-known{background:var(--green-bg);color:#6aaa7e;border-color:var(--green)}
+.btn-known:hover{background:#122018;border-color:#5a9a6e}
+
+/* ── Complete screen ── */
+#complete-screen{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;text-align:center;
+}
+.complete-inner{
+  background:var(--surface);border:1px solid var(--border3);
+  border-radius:24px;padding:56px 64px;max-width:600px;width:100%;
+  position:relative;
+}
+.complete-inner::before,.complete-inner::after{
+  content:'';position:absolute;width:60px;height:60px;opacity:.15;
+}
+.complete-inner::before{top:20px;left:20px;
+  border-top:1px solid var(--gold);border-left:1px solid var(--gold);border-radius:6px 0 0 0}
+.complete-inner::after{bottom:20px;right:20px;
+  border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);border-radius:0 0 6px 0}
+.complete-dharma{font-size:52px;margin-bottom:20px;opacity:.8}
+.complete-title{font-family:'Cinzel',serif;font-weight:400;color:var(--gold);
+  font-size:26px;margin-bottom:8px;letter-spacing:.1em}
+.complete-sub{color:var(--text-dim);font-style:italic;margin-bottom:40px;font-size:16px}
+.result-grid{display:flex;gap:32px;margin-bottom:40px;justify-content:center}
+.result-cell{text-align:center;min-width:80px}
+.result-num{font-size:48px;font-weight:300;line-height:1}
+.result-lbl{font-size:11px;letter-spacing:.1em;color:var(--text-dim);margin-top:6px;text-transform:uppercase}
+.result-divider{width:1px;background:var(--border3);align-self:stretch}
+.complete-btns{display:flex;gap:12px;justify-content:center}
+.btn-restart{background:var(--gold);color:var(--bg);border:1px solid var(--gold);
+  padding:14px 36px;border-radius:10px;font-family:'Cormorant Garamond',serif;
+  font-size:16px;cursor:pointer;letter-spacing:.06em;transition:opacity .2s}
+.btn-restart:hover{opacity:.9}
+.btn-shuffle{background:transparent;color:var(--gold);border:1px solid var(--gold-dim);
+  padding:14px 36px;border-radius:10px;font-family:'Cormorant Garamond',serif;
+  font-size:16px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.btn-shuffle:hover{border-color:var(--gold);background:var(--gold-faint)}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes cardInL{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.card-wrapper.in-r{animation:cardIn .3s ease both}
+.card-wrapper.in-l{animation:cardInL .3s ease both}
+#main{animation:fadeIn .5s ease both}
+</style>
+</head>
+<body>
+
+<!-- ── Sidebar ── -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-dharma">&#9784;</div>
+    <div class="sidebar-title">Buddh&#257;nubuddha<br>Pavat</div>
+    <div class="sidebar-subtitle">Chapters 2&ndash;11 &middot; 2006&ndash;2023</div>
+  </div>
+
+  <div class="score-panel">
+    <div class="score-panel-title">Session Score</div>
+    <div class="score-grid">
+      <div class="score-cell">
+        <div class="score-num green" id="score-known">0</div>
+        <div class="score-lbl">Known</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-num red" id="score-review">0</div>
+        <div class="score-lbl">Review</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-num gold" id="score-pct">0%</div>
+        <div class="score-lbl">Score</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div class="chapter-list-header">Chapters</div>
+  <div class="chapter-list" id="chapter-list"></div>
+
+  <div class="kb-hints">
+    <div class="kb-title">Keyboard Shortcuts</div>
+    <div class="kb-row"><span class="kb-key">Space</span><span>Flip card</span></div>
+    <div class="kb-row"><span class="kb-key">&#8592;</span><span class="kb-key">&#8594;</span><span>Navigate</span></div>
+    <div class="kb-row"><span class="kb-key">K</span><span>Know it</span></div>
+    <div class="kb-row"><span class="kb-key">R</span><span>Review again</span></div>
+  </div>
+</aside>
+
+<!-- ── Main ── -->
+<main id="main">
+  <div id="quiz-content" style="display:flex;flex-direction:column;height:100%">
+    <div class="main-topbar">
+      <div class="chapter-label" id="chapter-label"></div>
+      <div class="nav-controls">
+        <button class="nav-btn" id="prev-btn" onclick="goTo(currentIndex-1)" disabled>&#8249;</button>
+        <span class="nav-count" id="nav-count">1 / 39</span>
+        <button class="nav-btn" id="next-btn" onclick="goTo(currentIndex+1)">&#8250;</button>
+        <button class="shuffle-btn" onclick="shuffleCards()">&#9676; Shuffle</button>
+      </div>
+    </div>
+
+    <div class="card-area">
+      <div class="card-wrapper" id="card-wrapper">
+        <div class="card" id="card" onclick="flipCard()">
+          <div class="card-face front">
+            <div class="card-label q-label">Question</div>
+            <div class="year-tags" id="year-tags"></div>
+            <div class="question-text" id="question-text"></div>
+            <div class="flip-hint">Click to reveal &nbsp;&mdash;&nbsp; or press Space</div>
+            <div class="status-badge" id="status-badge"></div>
+          </div>
+          <div class="card-face back" onclick="flipCard()">
+            <div class="card-label a-label">Answer</div>
+            <div class="answer-text" id="answer-text"></div>
+            <div class="flip-hint">Click to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-row" id="action-row">
+      <button class="act-btn btn-review" onclick="markCard('review')">&#8635;&ensp;Review Again &nbsp;<span style="font-size:11px;opacity:.5">[R]</span></button>
+      <button class="act-btn btn-known" onclick="markCard('known')">&#10003;&ensp;I Know This &nbsp;<span style="font-size:11px;opacity:.5">[K]</span></button>
+    </div>
+  </div>
+
+  <!-- Complete screen -->
+  <div id="complete-screen">
+    <div class="complete-inner">
+      <div class="complete-dharma">&#9784;</div>
+      <div class="complete-title">Session Complete</div>
+      <div class="complete-sub">May your study bring wisdom and liberation.</div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="result-num green" id="res-known">0</div><div class="result-lbl">Known</div></div>
+        <div class="result-divider"></div>
+        <div class="result-cell"><div class="result-num red" id="res-review">0</div><div class="result-lbl">Review</div></div>
+        <div class="result-divider"></div>
+        <div class="result-cell"><div class="result-num gold" id="res-pct">0%</div><div class="result-lbl">Score</div></div>
+      </div>
+      <div class="complete-btns">
+        <button class="btn-restart" onclick="restartSession()">Restart</button>
+        <button class="btn-shuffle" onclick="shuffleCards()">Shuffle &amp; Restart</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+const ALL_CARDS=[
+  // ── Ch.2 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.2 \u2013 The Great Renunciation",years:"[2007, 2017, 2019, 2021]",question:"What was the resolute vow of truth (Satyadhi\u1e6dh\u0101na) made by the Bodhisattva under the Bodhi tree before his enlightenment?",answer:"Seated under the Bodhi tree, the Bodhisattva declared: \u2018Let only my skin, sinews, and bones remain; let my flesh and blood dry up \u2014 but I will not rise from this seat until I have attained enlightenment.\u2019 This unshakeable vow of truth expressed absolute resolve to attain Buddhahood regardless of physical cost, sustaining him through M\u0101ra\u2019s attacks and throughout the night of enlightenment."},
+  {chapter:"Ch.2 \u2013 The Great Renunciation",years:"[2023]",question:"What realisation did the Buddha become enlightened with, and on what day did he become self-awakened (Samm\u0101sambuddha)?",answer:"On the full-moon day of Ves\u0101kha, the Buddha attained full enlightenment by realising the Four Noble Truths in their fullness \u2014 including complete knowledge of suffering, its origin, its cessation, and the path \u2014 together with the threefold knowledge: knowledge of past lives, knowledge of the passing away and rebirth of beings, and the knowledge of the destruction of mental taints (\u0100savakkhaya-\u00f1\u0101\u1e47a). He thus became a Samm\u0101sambuddha \u2014 a fully self-awakened one."},
+  // ── Ch.3 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.3 \u2013 Satta Mahasthana",years:"[2011, 2020]",question:"What was the Buddha\u2019s inspired exclamation (Ud\u0101na) during the first, middle, and final watches of the night while contemplating Pa\u1e6cicca-samup\u0101da during the first week?",answer:"During the first watch, contemplating in forward order, the Buddha exclaimed: \u2018When phenomena arise for the one who is ardent and meditative, his doubts all vanish as he understands the arising of causes.\u2019 During the middle watch, contemplating in reverse order, he exclaimed the same verse. During the final watch, contemplating both ways, he proclaimed: \u2018When phenomena arise for the one who is ardent and meditative, he stands having scattered M\u0101ra\u2019s army, like the sun illuminating the sky.\u2019"},
+  {chapter:"Ch.3 \u2013 Satta Mahasthana",years:"[2011]",question:"What are the Animisa Cetiya and Ratanacankama Cetiya, and what specific actions did the Buddha perform at these locations during the second and third weeks?",answer:"The Animisa Cetiya (Unblinking Shrine) is northeast of the Bodhi tree where the Buddha stood during the second week, gazing at the Bodhi tree without blinking for seven days in gratitude for its shelter. The Ratanacankama Cetiya (Jewelled Walk Shrine) is a path between the Bodhi tree and the Animisa Cetiya where, during the third week, the Buddha walked back and forth in meditation. As he walked, lotus flowers miraculously bloomed beneath each footstep, forming a jewelled walkway."},
+  {chapter:"Ch.3 \u2013 Satta Mahasthana",years:"[2014]",question:"What profound Dhamma did the Buddha contemplate while residing at the Ratanaghara Cetiya during the fourth week?",answer:"During the fourth week, residing in the Jewelled House (Ratanaghara Cetiya) northwest of the Bodhi tree, the Buddha contemplated the Abhidhamma \u2014 specifically the seven books of the Abhidhamma Pi\u1e6daka \u2014 in their entirety. As he contemplated, six-coloured rays of light (blue, yellow, red, white, orange, and a combination) radiated from his body, illuminating the surrounding area."},
+  {chapter:"Ch.3 \u2013 Satta Mahasthana",years:"[2011, 2018, 2023]",question:"Explain the Buddha\u2019s comparison of teachable and unteachable persons to the types of lotuses.",answer:"Surveying the world before deciding whether to teach, the Buddha saw beings as lotuses in a pond. Some lotuses are born deep in the water and have not yet risen to the surface \u2014 beings too deeply immersed in defilements to benefit from teaching. Some lotuses are at the water\u2019s surface, about to bloom \u2014 beings who, with just a little teaching, will immediately understand the Dhamma. Some have already risen above the water and bloomed cleanly \u2014 beings already close to awakening. This reflection encouraged the Buddha to go forth and teach."},
+  // ── Ch.4 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2017, 2018]",question:"What were the two extremes (Anta) the Buddha taught the Pa\u00f1cavaggiya to avoid during the First Sermon, and what are their respective faults?",answer:"The Buddha taught avoidance of two extremes. The first is indulgence in sensual pleasure (K\u0101masukhallik\u0101nuyoga) \u2014 low, vulgar, the way of the worldling, ignoble, and unbeneficial. The second is indulgence in self-mortification (Att\u0101kilamath\u0101nuyoga) \u2014 painful, ignoble, and equally unbeneficial. The Middle Way (Majjhim\u0101pa\u1e6dipada), expounded as the Noble Eightfold Path, avoids both extremes and leads to vision, knowledge, calm, direct knowledge, enlightenment, and Nibb\u0101na."},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2016, 2021, 2022]",question:"What is the meaning of the \u2018Dhamma-cakkhu\u2019 (Eye of Dhamma) that arose in Ko\u1e45\u1e45a\u00f1\u00f1a, and what level of enlightenment does it signify?",answer:"The Dhamma-cakkhu refers to the arising of the insight: \u2018Whatever is subject to origination is all subject to cessation.\u2019 This signifies attainment of Sot\u0101patti-phala (Stream-Entry) \u2014 the first stage of enlightenment \u2014 in which all doubt about the Triple Gem is eradicated and liberation is guaranteed within seven lifetimes at most. Ko\u1e45\u1e45a\u00f1\u00f1a was the first of the Pa\u00f1cavaggiya to attain this, prompting the Buddha\u2019s exclamation: \u2018Ko\u1e45\u1e45a\u00f1\u00f1a knows!\u2019"},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2012, 2019, 2022]",question:"In the Anattalakkhana Sutta, what components (the Five Aggregates) did the Buddha declare as non-self (anatt\u0101)?",answer:"The Buddha declared all five aggregates as non-self: (1) Form (r\u016bpa) \u2014 material phenomena; (2) Feeling (vedan\u0101) \u2014 pleasure, pain, or neutrality; (3) Perception (sa\u00f1\u00f1\u0101) \u2014 recognition and identification; (4) Mental formations (sa\u1e45kh\u0101ra) \u2014 volitional activities; (5) Consciousness (vi\u00f1\u00f1\u0101\u1e47a) \u2014 awareness through the six sense bases. For each, the Buddha applied the reasoning: \u2018If this were self, it would not lead to affliction, and one could say: let my form be thus, let it not be thus.\u2019"},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2007, 2016]",question:"Why did the Buddha teach the Anupubbikath\u0101 (Graduated Sermon) to Yasa instead of immediately teaching the Four Noble Truths as He did with the Pa\u00f1cavaggiya?",answer:"The Pa\u00f1cavaggiya were monastics who had undergone significant renunciation and purified their minds through ascetic practice, making them ready for the highest teaching immediately. Yasa was a wealthy young householder whose mind was still attached to sensual pleasures. The Anupubbikath\u0101 \u2014 progressing through generosity, virtue, heavens, the dangers of sensuality, and the benefits of renunciation \u2014 progressively cleansed and elevated Yasa\u2019s mind so that the Four Noble Truths could be received and penetrated effectively."},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2008]",question:"Did the Buddha plan to teach the three J\u1e6datila brothers intentionally or by chance? What evidence supports this?",answer:"The Buddha planned to teach the three J\u1e6datila brothers intentionally. Evidence: he specifically set out for Uruvel\u0101 knowing the brothers were there; he performed a sustained series of miracles over several days to subdue Uruvel\u0101 Kassapa\u2019s arrogance; and he continued patiently until Kassapa acknowledged the Buddha\u2019s superiority and requested ordination. This deliberate, sustained effort over multiple days demonstrates clear purposeful intent, not a chance encounter."},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2019]",question:"Summarise the core teaching of the \u0100dittapariy\u0101ya Sutta (The Fire Sermon) at Gay\u0101s\u012bsa.",answer:"The Buddha declared everything is burning \u2014 the eye, visible forms, eye-consciousness, eye-contact, and all feeling through eye-contact \u2014 burning with the fires of passion (r\u0101ga), aversion (dosa), and delusion (moha), as well as birth, ageing, death, sorrow, and despair. The same applies to all six sense bases. A learned noble disciple, perceiving this, grows disenchanted (nibbid\u0101), through disenchantment becomes dispassionate, through dispassion is liberated, and knows: \u2018Birth is destroyed, the holy life has been lived, what was to be done has been done, there is no more coming to any state of being.\u2019"},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2010]",question:"What were the five wishes of King Bimbis\u0101ra made when he was a prince, and how were they fulfilled?",answer:"When young, Bimbis\u0101ra made five wishes: (1) May I become king; (2) May a fully enlightened Buddha appear in my realm; (3) May I meet and pay homage to that Buddha; (4) May that Buddha teach me the Dhamma; (5) May I understand what he teaches. All five were fulfilled: Bimbis\u0101ra became King of Magadha, the Buddha arrived in R\u0101jagaha, Bimbis\u0101ra met and paid homage to him, the Buddha taught, and King Bimbis\u0101ra attained Sot\u0101patti-phala (Stream-Entry) during that very teaching."},
+  {chapter:"Ch.4 \u2013 Proclaiming the Religion",years:"[2019, 2021, 2023]",question:"Where was the first monastery in Buddhism established, and what reasons made the Buddha deem it highly suitable?",answer:"The first monastery was the Veluvana (Bamboo Grove Monastery) in R\u0101jagaha, gifted by King Bimbis\u0101ra. The Buddha declared it suitable for four reasons: not too far from the city (accessible for almsround) yet not too close (quiet and undisturbed); easily accessible by those wishing to visit; not crowded during the day; quiet and secluded at night, conducive to meditation. These conditions balanced contact with lay supporters and the solitude necessary for spiritual practice."},
+  // ── Ch.5 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.5 \u2013 Fulfilling the Buddha's Duties",years:"[2012, 2017, 2020, 2023]",question:"What was the core essence of Venerable Assaji\u2019s teaching to the wanderer Upatissa (S\u0101riputta)?",answer:"Assaji taught the famous dependent-origination verse: of all phenomena arising from a cause, the Tath\u0101gata has explained their cause and their cessation \u2014 this is the teaching of the Great Ascetic. This conveyed that all conditioned phenomena arise from causes and are subject to cessation, encapsulating Pa\u1e6cicca-samup\u0101da and impermanence. Upon hearing just this verse, Upatissa (S\u0101riputta) immediately attained Stream-Entry."},
+  {chapter:"Ch.5 \u2013 Fulfilling the Buddha's Duties",years:"[2006, 2016]",question:"In a discourse to the wanderer D\u012bghanakha, how did the Buddha logically counter the view of always being disagreeable with everything?",answer:"D\u012bghanakha held the view \u2018I am disagreeable with everything.\u2019 The Buddha asked: does he disagree with this very view too? If yes, the position is self-refuting. If no, then he accepts at least one thing, contradicting his universal rejection. This logical counter dismantled the extreme view through its own internal inconsistency \u2014 notably, Venerable S\u0101riputta, who was fanning the Buddha nearby, attained Arahantship upon hearing this exchange."},
+  {chapter:"Ch.5 \u2013 Fulfilling the Buddha's Duties",years:"[Speculative]",question:"What step-by-step methods did the Buddha teach Venerable Maha Moggall\u0101na to overcome drowsiness at Kallavalamuttagama?",answer:"(1) Remove attention from the drowsy thought; (2) Reflect on the Dhamma as heard and memorised; (3) Recite the Dhamma aloud in detail; (4) Pull both ears and rub the limbs; (5) Rise, wash the eyes, and gaze at the sky and stars; (6) Develop the perception of light (\u0101loka-sa\u00f1\u00f1\u0101); (7) Walk mindfully back and forth with restrained senses; (8) As a last resort, lie down mindfully with the firm intention to rise."},
+  {chapter:"Ch.5 \u2013 Fulfilling the Buddha's Duties",years:"[2011]",question:"How did the Buddha compare the roles of S\u0101riputta and Moggall\u0101na to a mother and a nanny?",answer:"The Buddha likened S\u0101riputta to a mother who gives birth \u2014 he guides beings to the initial stages of enlightenment (stream-entry) by nurturing their first spiritual development. Moggall\u0101na was likened to a nanny who raises the child \u2014 he guides those already established in stream-entry toward the higher stages, all the way to Arahantship."},
+  {chapter:"Ch.5 \u2013 Fulfilling the Buddha's Duties",years:"[2010, 2017]",question:"Where did Venerable S\u0101riputta choose to attain Parinibba\u0304na, and what was his primary reason?",answer:"S\u0101riputta chose to attain Parinibba\u0304na at N\u0101laka village in Magadha \u2014 his birthplace. His primary reason was filial piety: his aged mother R\u016bpas\u0101r\u012b had not yet attained any stage of enlightenment. By returning home, he was able to teach her the Dhamma in her final days, enabling her to attain stream-entry before his passing."},
+  // ── Ch.6 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.6 \u2013 The 16 Brahmin Disciples of Bavari",years:"[Speculative]",question:"What was the primary motive of the Brahmin Bavari in sending his 16 leading disciples to question the Buddha?",answer:"Bavari had heard of the Buddha\u2019s arising and, deeply concerned about the truth, sent his 16 foremost disciples on a long journey to S\u0101vatth\u012b to verify whether Gotama was truly fully enlightened. He instructed them to test the Buddha with subtle questions on the highest Dhamma and to test whether the Buddha could read minds \u2014 thereby confirming his omniscience."},
+  {chapter:"Ch.6 \u2013 The 16 Brahmin Disciples of Bavari",years:"[2012, 2018, 2020]",question:"What did the Buddha declare as the force that obscures the world and makes beings deluded as if in darkness, in response to Ajita Manava?",answer:"The Buddha declared that Ignorance (avijj\u0101) shrouds the world, making beings deluded as if in darkness. He further identified Craving (ta\u1e47h\u0101) as what does not release beings from suffering, and Suffering (dukkha) as what prevents true happiness. This exchange is recorded in the P\u0101r\u0101ya\u1e47a Vagga of the Sutta Nip\u0101ta."},
+  {chapter:"Ch.6 \u2013 The 16 Brahmin Disciples of Bavari",years:"[2006]",question:"To whom did Moghar\u0101ja Manava intend to yield his turn, and where was his teacher Bavari located?",answer:"Moghar\u0101ja intended to yield his turn to Pu\u1e47\u1e47aka Manava out of deference. The teacher Bavari was residing at a hermitage on the banks of the Godh\u0101var\u012b River in the South (Dakkhi\u1e47\u0101patha region), where he had established a large community of brahmin students."},
+  // ── Ch.7 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.7 \u2013 \u00d1atticatutthakamma Ordination",years:"[2012]",question:"Who was the first preceptor and who was the first disciple ordained using the \u00d1atticatutthakamma Upasampada method?",answer:"The first preceptor (upajjh\u0101ya) to use the \u00d1atticatutthakamma formal ordination method was Venerable S\u0101riputta. The first disciple ordained under this method was the brahmin R\u0101dha, formerly a poor brahmin who had lived in the monastery and was ordained at S\u0101riputta\u2019s request after the Sangha granted approval."},
+  {chapter:"Ch.7 \u2013 \u00d1atticatutthakamma Ordination",years:"[2010, 2016, 2021, 2023]",question:"When teaching the brahmin R\u0101dha, what did the Buddha specifically identify as \u2018M\u0101ra\u2019?",answer:"The Buddha identified the Five Aggregates (pa\u00f1cakkhandha) as M\u0101ra: form (r\u016bpa), feeling (vedan\u0101), perception (sa\u00f1\u00f1\u0101), mental formations (sa\u1e45kh\u0101ra), and consciousness (vi\u00f1\u00f1\u0101\u1e47a). He instructed R\u0101dha to abandon desire and lust for these aggregates, as clinging to them constitutes being ensnared by M\u0101ra \u2014 the embodiment of death and bondage in sa\u1e43s\u0101ra."},
+  {chapter:"Ch.7 \u2013 \u00d1atticatutthakamma Ordination",years:"[2007, 2019]",question:"How did Venerable Pu\u1e47\u1e47amant\u0101niputta explain the holy life using the analogy of royal chariots?",answer:"Just as a traveller going from city to city changes from one royal chariot to the next \u2014 each carrying him part of the way \u2014 so the holy life progresses in stages: Morality (s\u012bla) carries one to concentration (sam\u0101dhi), sam\u0101dhi to wisdom (pa\u00f1\u00f1\u0101), pa\u00f1\u00f1\u0101 to liberation (vimutti), and liberation to the knowledge of liberation. No single stage alone carries one all the way to Nibb\u0101na."},
+  // ── Ch.8 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.8 \u2013 The Journey to Kapilavastu",years:"[2009, 2017]",question:"Which stages of enlightenment did King Suddhodana and Queen Mah\u0101 Paj\u0101pat\u012b Gotem\u012b attain on the first and second days?",answer:"After hearing the Buddha\u2019s teaching on the first day, King Suddhodana attained Sot\u0101patti-phala (Stream-Entry). After the second day\u2019s teaching, he attained Sakad\u0101g\u0101mi-phala (Once-Returner). Queen Mah\u0101 Paj\u0101pat\u012b Gotem\u012b attained Sot\u0101patti-phala (Stream-Entry) upon hearing the initial teaching."},
+  {chapter:"Ch.8 \u2013 The Journey to Kapilavastu",years:"[2023]",question:"By listening to which specific sermon did King Suddhodana attain An\u0101g\u0101mi-phala (Non-Returner) on the third day?",answer:"King Suddhodana attained An\u0101g\u0101mi-phala on the third day by listening to the Mah\u0101dhammasam\u0101dh\u0101na Sutta \u2014 a discourse on the consequences of wholesome and unwholesome actions and the importance of correct practice. His progressive attainment over three days ultimately culminated in full Arahantship shortly before his death."},
+  {chapter:"Ch.8 \u2013 The Journey to Kapilavastu",years:"[2007]",question:"What is the historical origin of the monastic rule requiring parental permission before ordaining a son?",answer:"When R\u0101hula, the Buddha\u2019s young son, persistently followed Venerable S\u0101riputta asking for his \u2018inheritance,\u2019 S\u0101riputta ordained him as a s\u0101ma\u1e47era (novice). King Suddhodana, grieved at losing his grandson without consent, petitioned the Buddha, who then enacted the Vinaya rule that a son must have his parents\u2019 permission before receiving ordination."},
+  // ── Ch.9 ──────────────────────────────────────────────────────────────────
+  {chapter:"Ch.9 \u2013 The Sakyan Princes Ordain",years:"[2011]",question:"What reasons did Mah\u0101n\u0101ma use to convince Anuruddha to ordain in his place?",answer:"Mah\u0101n\u0101ma described the endless, cyclic duties of household life: one must constantly plough, sow, harvest, and store \u2014 the cycle never ends. Even after one\u2019s death, the duties are inherited and continue. There is no completing of household duties \u2014 they are beginningless and endless. He argued it would be far better for one of them to renounce, and persuaded Anuruddha to be the one to go forth."},
+  {chapter:"Ch.9 \u2013 The Sakyan Princes Ordain",years:"[2015, 2018]",question:"Why did Venerable Bhaddiya frequently exclaim \u2018Aho Sukha\u1e41!\u2019, and how did he explain it to the Buddha?",answer:"Before ordaining, Bhaddiya had been a Sakyan ruler with great power and wealth, yet lived in constant fear and anxiety, requiring heavy guards even in his own chambers. After ordaining and practising meditation in the forest, he experienced deep inner peace utterly free from that fear. His cry of \u2018Aho Sukha\u1e41!\u2019 reflected his realisation that genuine happiness comes not from power and possessions, but from the freedom found within the renunciant life."},
+  {chapter:"Ch.9 \u2013 The Sakyan Princes Ordain",years:"[Speculative]",question:"What are the 8 Thought Conceptions of a Great Man (Mah\u0101purisa-vitakka) taught to Anuruddha?",answer:"(1) This Dhamma is for one of few desires, not many desires; (2) for the contented, not the discontented; (3) for the secluded, not those delighting in company; (4) for the energetic, not the lazy; (5) for the mindful, not the unmindful; (6) for the concentrated, not the unconcentrated; (7) for the wise, not the unwise; (8) it delights in non-proliferation (nippapa\u00f1ca), not proliferation. Anuruddha mastered seven before the Buddha personally taught him the eighth."},
+  {chapter:"Ch.9 \u2013 The Sakyan Princes Ordain",years:"[2006]",question:"What were the 8 stipulations Venerable \u0100nanda requested before accepting the role of personal attendant, and the reasons for the last four?",answer:"The 8 stipulations: (1) Not receive robes given to the Buddha; (2) Not receive almsfood given for the Buddha; (3) Not share the Buddha\u2019s perfumed chamber; (4) Not accompany to meal invitations. Reasons for (5\u20138): (5) To be invited on \u0100nanda\u2019s behalf so no one could say he gained nothing from serving; (6) To refer questioners to the Buddha himself; (7) To approach the Buddha at any time to ask questions; (8) To have the Buddha repeat any teaching he missed."},
+  {chapter:"Ch.9 \u2013 The Sakyan Princes Ordain",years:"[General Knowledge]",question:"Identify the Etadagga (Foremost) titles bestowed upon Venerable \u0100nanda.",answer:"Venerable \u0100nanda was declared Foremost (Etadagga) in four categories: (1) Foremost in learning and retaining (bahussuta \u2014 most learned); (2) Foremost in mindfulness (satimanta\u0304na\u1e41 \u2014 most mindful); (3) Foremost in good conduct and diligence in attending (gatimanta\u0304na\u1e41); (4) Foremost in personal service (upa\u1e6dh\u0101ka\u0304na\u1e41 \u2014 foremost among personal attendants of the Buddha)."},
+  // ── Ch.10 ─────────────────────────────────────────────────────────────────
+  {chapter:"Ch.10 \u2013 Teaching the Royal Mother",years:"[Speculative]",question:"What was the origin of the Gandamba Tree, and why was it significant for the Twin Miracle?",answer:"The Gandamba (Mango) Tree near S\u0101vatth\u012b was grown from a mango seed by the gardener Ganda at the Buddha\u2019s request \u2014 it grew instantly into a full tree through his miraculous power. It became significant because the Twin Miracle (Yamaka-p\u0101\u1e6dih\u0101riya) was performed beneath it, at the specific location challenged by rival teachers."},
+  {chapter:"Ch.10 \u2013 Teaching the Royal Mother",years:"[2015]",question:"After performing the Twin Miracle, where did the Buddha spend the Rains Retreat, what did He teach, and what was the spiritual result for His royal mother?",answer:"After the Twin Miracle, the Buddha ascended to T\u0101vati\u1e41sa Heaven to spend the Vassa (Rains Retreat). There He taught the Abhidhamma Pi\u1e6daka to His mother Mah\u0101m\u0101y\u0101 (reborn as a deity) and the assembled gods. The result was that Queen Mah\u0101m\u0101y\u0101 attained Sot\u0101patti-phala (Stream-Entry), securing her liberation from the lower realms."},
+  {chapter:"Ch.10 \u2013 Teaching the Royal Mother",years:"[Speculative]",question:"How did the newly ordained bhikkhu Ajita retrieve the missing alms bowl, and what future prophecy did the Buddha make about him?",answer:"When Ajita\u2019s alms bowl went missing, he used supernatural power (iddhi) \u2014 even as a newly ordained monk \u2014 to perceive and retrieve it. The Buddha prophesied that in a future age Ajita would be reborn and become the next fully enlightened Buddha, known as Metteyya (Maitreya) \u2014 the future Buddha who will rediscover and teach the Dhamma when it has disappeared from the world."},
+  // ── Ch.11 ─────────────────────────────────────────────────────────────────
+  {chapter:"Ch.11 \u2013 Teaching the Disciples",years:"[Speculative]",question:"Explain the sitar analogy the Buddha used to instruct Venerable So\u1e47a Ko\u1e37ivisa on the balance of effort.",answer:"When a sitar\u2019s strings are too tight the sound is sharp and unpleasant, and the strings may snap. When too loose, the sound is dull and the notes unclear. Only when tuned to the middle tension does the sitar produce beautiful music. Similarly, effort in practice that is too forceful leads to restlessness; too slack leads to laziness. Only the middle way of balanced effort leads to Nibb\u0101na \u2014 hence the Middle Path."},
+  {chapter:"Ch.11 \u2013 Teaching the Disciples",years:"[2011, 2014, 2020, 2022]",question:"What are the Fourfold Dhamma Exposition (Dhammuddesa) that Venerable Ra\u1e6dth\u0101p\u0101la expounded to King Korabya as his reasons for ordaining?",answer:"(1) The world is swept away \u2014 it does not endure, it offers no shelter (impermanence); (2) The world has no shelter and no protector \u2014 no one can truly protect beings from death and suffering; (3) The world has nothing of its own \u2014 one must pass on, leaving everything behind; (4) The world is incomplete, insatiate, and a slave to craving \u2014 beings are never satisfied with what they have. These four truths convinced Ra\u1e6dth\u0101p\u0101la there was nothing in household life worth clinging to."},
+  {chapter:"Ch.11 \u2013 Teaching the Disciples",years:"[2006]",question:"Identify the Etadagga (Foremost) titles for So\u1e47a Ko\u1e37ivisa and Ra\u1e6dth\u0101p\u0101la.",answer:"Venerable So\u1e47a Ko\u1e37ivisa was declared Etadagga (Foremost) among those who arouse energy (\u0101raddhaviriy\u0101na\u1e41 \u2014 foremost in vigorous effort). Venerable Ra\u1e6dth\u0101p\u0101la was declared Etadagga among those who go forth out of pure faith (saddhā-pabbajit\u0101na\u1e41 \u2014 foremost among those who renounced purely out of faith in the Dhamma, without compulsion from poverty, fear, or family pressure)."}
+];
+
+// chapter counts
+const chapterCounts={};
+ALL_CARDS.forEach(c=>{chapterCounts[c.chapter]=(chapterCounts[c.chapter]||0)+1});
+const chapters=[...new Set(ALL_CARDS.map(c=>c.chapter))];
+
+let deck=[...ALL_CARDS],filtered=[...deck];
+let currentIndex=0,isFlipped=false;
+let score={known:0,review:0},answered={},selectedChapter='All';
+
+// ── Build sidebar chapter list ──────────────────────────────
+function buildChapterList(){
+  const list=document.getElementById('chapter-list');
+  const allItem=document.createElement('div');
+  allItem.className='chapter-item active';
+  allItem.innerHTML=`<span class="ch-label">All Chapters</span><span class="ch-count">${ALL_CARDS.length}</span>`;
+  allItem.onclick=()=>selectChapter('All',allItem);
+  list.appendChild(allItem);
+  chapters.forEach(ch=>{
+    const item=document.createElement('div');
+    item.className='chapter-item';
+    const short=ch.replace('Ch.','').split('\u2013');
+    item.innerHTML=`<span class="ch-label">${ch.split('\u2013')[0].trim()}</span><span class="ch-count">${chapterCounts[ch]}</span>`;
+    item.title=ch;
+    item.onclick=()=>selectChapter(ch,item);
+    list.appendChild(item);
+  });
+}
+function selectChapter(ch,el){
+  selectedChapter=ch;
+  document.querySelectorAll('.chapter-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  resetSession();
+}
+
+// ── Session ──────────────────────────────────────────────────
+function getFiltered(){return selectedChapter==='All'?deck:deck.filter(c=>c.chapter===selectedChapter);}
+function resetSession(){
+  filtered=getFiltered();currentIndex=0;isFlipped=false;
+  score={known:0,review:0};answered={};
+  document.getElementById('complete-screen').style.display='none';
+  document.getElementById('quiz-content').style.display='flex';
+  renderCard();updateScore();
+}
+function restartSession(){deck=[...ALL_CARDS];resetSession();}
+function shuffleCards(){
+  const arr=[...ALL_CARDS];
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  deck=arr;resetSession();
+}
+
+// ── Render ──────────────────────────────────────────────────
+function renderCard(dir='r'){
+  filtered=getFiltered();
+  const total=filtered.length,card=filtered[currentIndex];
+  if(!card)return;
+  document.getElementById('year-tags').textContent=card.years;
+  document.getElementById('question-text').textContent=card.question;
+  document.getElementById('answer-text').textContent=card.answer;
+  document.getElementById('chapter-label').textContent=card.chapter;
+  isFlipped=false;
+  document.getElementById('card').classList.remove('flipped');
+  document.getElementById('action-row').classList.remove('visible');
+  const badge=document.getElementById('status-badge'),st=answered[currentIndex];
+  badge.className='status-badge';
+  if(st==='known'){badge.textContent='✓';badge.classList.add('visible','status-known');}
+  else if(st==='review'){badge.textContent='↺';badge.classList.add('visible','status-review');}
+  document.getElementById('nav-count').textContent=`${currentIndex+1} / ${total}`;
+  document.getElementById('prev-btn').disabled=currentIndex===0;
+  document.getElementById('next-btn').disabled=currentIndex>=total-1;
+  const wrapper=document.getElementById('card-wrapper');
+  wrapper.classList.remove('in-r','in-l');
+  void wrapper.offsetWidth;
+  wrapper.classList.add(dir==='l'?'in-l':'in-r');
+  updateScore();
+}
+function flipCard(){
+  isFlipped=!isFlipped;
+  document.getElementById('card').classList.toggle('flipped',isFlipped);
+  const ar=document.getElementById('action-row');
+  if(isFlipped&&!answered[currentIndex])ar.classList.add('visible');
+  else ar.classList.remove('visible');
+}
+function markCard(type){
+  if(answered[currentIndex])return;
+  answered[currentIndex]=type;score[type]++;updateScore();
+  const badge=document.getElementById('status-badge');
+  badge.className='status-badge visible '+(type==='known'?'status-known':'status-review');
+  badge.textContent=type==='known'?'✓':'↺';
+  document.getElementById('action-row').classList.remove('visible');
+  setTimeout(()=>{
+    filtered=getFiltered();
+    if(currentIndex+1>=filtered.length)showComplete();
+    else{currentIndex++;renderCard('r');}
+  },380);
+}
+function goTo(idx){
+  filtered=getFiltered();
+  if(idx<0||idx>=filtered.length)return;
+  const dir=idx>currentIndex?'r':'l';
+  currentIndex=idx;renderCard(dir);
+}
+function updateScore(){
+  document.getElementById('score-known').textContent=score.known;
+  document.getElementById('score-review').textContent=score.review;
+  filtered=getFiltered();
+  const total=filtered.length;
+  const answeredCount=Object.keys(answered).filter(k=>+k<total).length;
+  const pct=total>0?Math.round((score.known/total)*100):0;
+  document.getElementById('score-pct').textContent=pct+'%';
+  document.getElementById('progress-fill').style.width=(total>0?(answeredCount/total)*100:0)+'%';
+}
+function showComplete(){
+  const total=filtered.length;
+  document.getElementById('quiz-content').style.display='none';
+  document.getElementById('complete-screen').style.display='flex';
+  document.getElementById('res-known').textContent=score.known;
+  document.getElementById('res-review').textContent=score.review;
+  document.getElementById('res-pct').textContent=total>0?Math.round((score.known/total)*100)+'%':'0%';
+}
+
+// ── Keyboard ──────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  if(e.key==='ArrowRight')goTo(currentIndex+1);
+  else if(e.key==='ArrowLeft')goTo(currentIndex-1);
+  else if(e.key===' '){e.preventDefault();flipCard();}
+  else if(e.key==='k'||e.key==='K'){if(isFlipped&&!answered[currentIndex])markCard('known');}
+  else if(e.key==='r'||e.key==='R'){if(isFlipped&&!answered[currentIndex])markCard('review');}
+});
+
+buildChapterList();resetSession();
+</script>
+</body>
+</html>
