@@ -1,13 +1,15 @@
 # Buddhist Quiz – Buddhānubuddha Pavat
 
-A mobile-first flashcard quiz app for studying the Thai national Buddhist Studies exam — covering 39 questions from Chapters 2–11.
+A flashcard quiz app for studying the Thai national Buddhist Studies exam — covering 39 questions from Chapters 2–11. Available in two versions: a mobile-first touch app and a desktop dashboard with keyboard shortcuts.
 
-**Live app:** https://mungmanbaoisan.github.io/buddhist-quiz/
+**Mobile (iPhone & Android):** https://mungmanbaoisan.github.io/buddhist-quiz/
+**Desktop (laptop & monitor):** https://mungmanbaoisan.github.io/buddhist-quiz/index_desktop.html
 
 ---
 
 ## What It Does
 
+### Mobile version
 - **Flip flashcards** — tap a card to reveal the answer with a smooth 3D animation
 - **Filter by chapter** — use the scrollable chapter pills at the top to study one chapter at a time
 - **Track your score** — mark each card as "Know It" or "Review Again" as you go
@@ -17,6 +19,13 @@ A mobile-first flashcard quiz app for studying the Thai national Buddhist Studie
 - **Exam year tags** — each card shows which years the question appeared on the Thai national exam
 - **iPhone safe-area support** — layout adjusts correctly around the iPhone notch
 
+### Desktop version
+- **Fixed sidebar** — chapter list, question counts, and live score panel always visible
+- **Keyboard shortcuts** — Space to flip, arrow keys to navigate, K for Known, R for Review
+- **Larger typography** — Cormorant Garamond font for a classical, book-like feel
+- **Decorative card accents** — corner flourishes styled in pure CSS
+- **Dashboard layout** — optimised for 14" laptop screens and larger monitors
+
 ---
 
 ## Built With
@@ -24,8 +33,9 @@ A mobile-first flashcard quiz app for studying the Thai national Buddhist Studie
 | Part | Technology |
 |------|------------|
 | Structure | HTML |
-| Styling | CSS (including 3D flip animations) |
+| Styling | CSS (including 3D flip animations and decorative accents) |
 | Logic | JavaScript (no frameworks, no libraries) |
+| Fonts | Google Fonts (Cormorant Garamond — desktop version) |
 | Local version | Python with Flask |
 | Hosting | GitHub Pages |
 
@@ -34,8 +44,8 @@ A mobile-first flashcard quiz app for studying the Thai national Buddhist Studie
 ## How to Run It
 
 ### Option A — Live (no setup needed)
-Open: **https://mungmanbaoisan.github.io/buddhist-quiz/**
-Works on iPhone, Android, and any desktop browser.
+- **Mobile:** https://mungmanbaoisan.github.io/buddhist-quiz/
+- **Desktop:** https://mungmanbaoisan.github.io/buddhist-quiz/index_desktop.html
 
 ### Option B — Local (PyCharm + Flask)
 1. Clone the repo (download your own copy of the project folder)
@@ -49,7 +59,8 @@ Works on iPhone, Android, and any desktop browser.
 
 ```
 buddhist_quiz/
-├── index.html              ← Standalone version (deployed to GitHub Pages)
+├── index.html              ← Mobile version (deployed to GitHub Pages)
+├── index_desktop.html      ← Desktop dashboard version
 ├── index_smartphone.html   ← Mobile-specific draft
 ├── app.py                  ← Flask server for local development
 ├── requirements.txt        ← Python dependencies (just Flask)
@@ -72,6 +83,16 @@ I took the Buddhist Quiz app — which previously ran locally in PyCharm using F
 - How to detect swipe gestures using JavaScript touch events
 - The difference between a Flask app (needs Python) and a standalone HTML file (runs anywhere)
 
+### 2026-05-14 — Built a desktop-optimised version with keyboard shortcuts
+
+I built a second version of the app — `index_desktop.html` — designed for studying at a laptop. It has a fixed sidebar showing the chapter list and live score, keyboard shortcuts for hands-free navigation, Cormorant Garamond typography, and decorative corner accents on cards.
+
+**Key things I learned:**
+- How to listen for keyboard input in JavaScript using `addEventListener('keydown', ...)`
+- How to load a custom font from Google Fonts with a single `<link>` tag
+- How to use CSS `::before` and `::after` pseudo-elements for purely decorative effects
+- That designing for a specific screen size can produce a more focused, polished result than trying to be responsive
+
 ---
 
 ## What's Next
@@ -84,7 +105,7 @@ I took the Buddhist Quiz app — which previously ran locally in PyCharm using F
 
 ## About the Developer
 
-I'm Josh — a British Buddhist monk learning to code while living at a monastery in Thailand. I built this app to help myself (and other monks) study for the Thai national Buddhist Studies exam. It started as a local Flask app in PyCharm and grew into a fully deployed mobile-first web app.
+I'm Josh — a British Buddhist monk learning to code while living at a monastery in Thailand. I built this app to help myself (and other monks) study for the Thai national Buddhist Studies exam. It started as a local Flask app in PyCharm and grew into a fully deployed multi-version web app.
 
 GitHub: https://github.com/MungManBaoIsan
 
@@ -92,4 +113,4 @@ GitHub: https://github.com/MungManBaoIsan
 
 ## What I Learned
 
-Building this project taught me that you don't always need a complex setup to ship something real. A single HTML file, a free GitHub account, and a bit of CSS and JavaScript was enough to build a working study tool — deployed live on the internet.
+Building this project taught me that you don't always need a complex setup to ship something real. A single HTML file, a free GitHub account, and a bit of CSS and JavaScript was enough to build a working study tool — deployed live on the internet. Then building the desktop version showed me that designing for a specific context, rather than trying to handle every screen size at once, leads to a much better experience.

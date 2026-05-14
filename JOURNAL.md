@@ -60,3 +60,30 @@ The Buddhist Quiz repo on GitHub now has a proper, full README visible to anyone
 Worked through with Claude Code (Anthropic). Git conflict diagnosed by checking `git rev-parse --show-toplevel`, `git log`, and `git diff origin/main..main --stat`.
 
 ---
+
+## 2026-05-14 — Built a desktop-optimised version of the Buddhist Quiz
+
+**Type:** Feature
+
+**What I built or did**
+I built a second version of the Buddhist Quiz — `index_desktop.html` — designed specifically for studying at a laptop or desktop screen. It has a completely different layout from the mobile version: a fixed sidebar showing the chapter list, question counts, and a live score panel, while the main area stays focused on the card itself.
+
+**Why I did it this way**
+The mobile version is great on a phone, but the layout doesn't make full use of a large screen. A sidebar-based dashboard feels more natural at a desk — you can see your progress at a glance without tapping through menus. I also wanted to add keyboard shortcuts, which only make sense on a desktop where there's a keyboard to use.
+
+**How it works**
+The layout uses CSS to fix the sidebar in place on the left while the card area takes up the remaining space. Keyboard shortcuts are handled by a JavaScript `keydown` event listener — `Space` flips the card, arrow keys navigate, `K` marks Known, `R` marks Review Again. The typography uses Cormorant Garamond (loaded from Google Fonts — a free service that provides web fonts), which gives the cards a more classical, book-like feel. Decorative corner accents on the cards are drawn in pure CSS using `::before` and `::after` pseudo-elements (invisible extra elements attached to a real element, used for decoration).
+
+**What this means for the app**
+The quiz now has two purpose-built versions for two different study contexts — phone in hand during a break, or laptop open at a desk. Both are live on GitHub Pages and shareable as plain links.
+
+**What I learned**
+- How to listen for keyboard input in JavaScript using `addEventListener('keydown', ...)`
+- How to load a custom font from Google Fonts with a single `<link>` tag
+- How to use CSS `::before` and `::after` pseudo-elements for purely decorative effects
+- That designing for a specific screen size (rather than trying to be responsive) can produce a much more focused, polished result
+
+**References / Conversations**
+Built with help from Claude Code (Anthropic).
+
+---
