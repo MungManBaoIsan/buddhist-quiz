@@ -1,0 +1,13 @@
+The gamification system has four core mechanics: streak, XP, levels, and badges.
+
+Streak: consecutive correct answers. Resets on wrong answer. Calm flame icon that glows as the streak grows. Displays current and session-best streak.
+
+XP system: 10 XP per correct answer. 9 thematic level names: Seeker through Enlightened. Level ring and XP progress bar shown in sidebar.
+
+Badges: 9 milestone achievements earned during the session. Toast notification appears when each badge is unlocked.
+
+Persistence via localStorage auto-save after every answer. Persist: XP total, current level, best streak, earned badges. Do NOT persist: deck position or session score.
+
+Each user's data is stored only in their own browser — separate and independent per device.
+
+Tone: calm and thematic — gold on dark temple aesthetic. Serene language. No confetti or sounds.

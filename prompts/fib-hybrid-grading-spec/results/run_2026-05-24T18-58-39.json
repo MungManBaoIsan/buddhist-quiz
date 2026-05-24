@@ -1,0 +1,79 @@
+{
+  "prompt": "fib-hybrid-grading-spec",
+  "timestamp": "2026-05-24T18:58:39.285282+00:00",
+  "cases_run": 2,
+  "avg_score": 0.611,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "grade a short factual card about Ananda"
+      },
+      "output": "This is a short factual card. Use keyword match grading with an accept list of valid spellings: accept: [\"Ananda\", \"Venerable Ananda\"]. The card is correct if any accepted term appears in the typed answer. Reveal the full textbook answer after grading.",
+      "score": 0.5,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "distinguishes_card_types",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_keyword_matching",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_self_grading",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "active_recall_first",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "grade a long explanation card about renunciation"
+      },
+      "output": "This is a long explanation card requiring self-grade. Active recall first: the user types their answer before the textbook answer is revealed. On submit, reveal the model answer. Then show self-grade buttons: \"Got it\" or \"Review again\". The paragraph answer cannot be matched by keyword.",
+      "score": 0.722,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "distinguishes_card_types",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_keyword_matching",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_self_grading",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "active_recall_first",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+This card uses Option C — a negative "which of the following is NOT" question. Apply to numbered-list cards where testing all items matters.
+
+The distractor techniques used across the deck:
+- Option A (hand-crafted plausible distractors, 80%): wrong answers that are factually adjacent — similar Pali terms, similar numbers. Never duplicate the correct answer.
+- Option B (fragment mixing, 10%): recombine real answer fragments into plausible-sounding wrong wholes.
+- Option C (negative questions, 10%): rewrite as "Which is NOT one of the X?" with one fabricated item.
+
+For Easy difficulty: cross-chapter random distractors (easy to eliminate). For Medium and Hard: use hand-crafted Option A/B/C distractors.
+
+Which of the following is NOT one of the five warning signs of a dying deva?
+A. Their divine flowers wither. (real item)
+B. Their garments become somber. (real item)
+C. Their divine palace begins to crumble. (fabricated item — this does not appear in the textbook)
+D. Sweat flows from their armpits. (real item)

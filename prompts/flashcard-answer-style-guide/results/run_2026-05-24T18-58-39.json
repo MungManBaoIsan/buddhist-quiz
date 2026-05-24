@@ -1,0 +1,79 @@
+{
+  "prompt": "flashcard-answer-style-guide",
+  "timestamp": "2026-05-24T18:58:39.293394+00:00",
+  "cases_run": 2,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "five warning signs of a dying deva"
+      },
+      "output": "1. The divine flowers adorning their body wither.\n2. Their divine garments become somber.\n3. Sweat flows from their armpits.\n4. Their physical body loses its radiance and appears dull.\n5. They feel weary of the heavenly realm.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "no_preamble",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "no_hedging",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "has_content",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "structured_if_multipart",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "Ayusankhara meaning and location performed"
+      },
+      "output": "Ayusankhara means formally relinquishing the will to live, setting a specific date for His passing in exactly three months. The Buddha performed this at the Pavala Cetiya in Vesali.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "no_preamble",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "no_hedging",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "has_content",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "structured_if_multipart",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

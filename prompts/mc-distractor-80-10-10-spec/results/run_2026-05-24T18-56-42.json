@@ -1,0 +1,29 @@
+{
+  "prompt": "mc-distractor-80-10-10-spec",
+  "timestamp": "2026-05-24T18:56:42.252942+00:00",
+  "cases_run": 2,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "create distractors for the five warning signs card"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "create distractors for the Ayusankhara location card"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

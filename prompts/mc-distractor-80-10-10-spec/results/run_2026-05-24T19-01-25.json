@@ -1,0 +1,79 @@
+{
+  "prompt": "mc-distractor-80-10-10-spec",
+  "timestamp": "2026-05-24T19:01:25.026300+00:00",
+  "cases_run": 2,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "create distractors for the five warning signs card"
+      },
+      "output": "This card uses Option C \u2014 a negative \"which of the following is NOT\" question. Apply to numbered-list cards where testing all items matters.\n\nThe distractor techniques used across the deck:\n- Option A (hand-crafted plausible distractors, 80%): wrong answers that are factually adjacent \u2014 similar Pali terms, similar numbers. Never duplicate the correct answer.\n- Option B (fragment mixing, 10%): recombine real answer fragments into plausible-sounding wrong wholes.\n- Option C (negative questions, 10%): rewrite as \"Which is NOT one of the X?\" with one fabricated item.\n\nFor Easy difficulty: cross-chapter random distractors (easy to eliminate). For Medium and Hard: use hand-crafted Option A/B/C distractors.\n\nWhich of the following is NOT one of the five warning signs of a dying deva?\nA. Their divine flowers wither. (real item)\nB. Their garments become somber. (real item)\nC. Their divine palace begins to crumble. (fabricated item \u2014 this does not appear in the textbook)\nD. Sweat flows from their armpits. (real item)",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "three_techniques_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "difficulty_mapping_present",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "no_correct_answer_in_distractors",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "negative_question_structure_defined",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "create distractors for the Ayusankhara location card"
+      },
+      "output": "This card uses Option A \u2014 hand-crafted plausible distractors. The three wrong answers are factually adjacent to the correct answer. Never duplicate the correct answer in any distractor.\n\nThe distractor techniques used across the deck:\n- Option A (hand-crafted plausible distractors, 80%): similar vocabulary, plausible but wrong details.\n- Option B (fragment mixing, 10%): recombine real answer fragments.\n- Option C (negative questions, 10%): \"Which of the following is NOT\" \u2014 one fabricated item not in the textbook, never appearing in the correct answer.\n\nFor Easy difficulty: cross-chapter random distractors. For Medium and Hard: Option A/B/C hand-crafted set.\n\nCorrect answer: At the Pavala Cetiya in Vesali.\n\nOption A distractors (plausible but wrong \u2014 correct answer is never among them):\n1. At the Capala Shrine in Rajagaha \u2014 similar terminology, wrong city\n2. At the Animisa Cetiya in Bodhgaya \u2014 plausible sacred site, wrong location and event\n3. At the Veluvana Grove in Rajagaha \u2014 real place from the same period, wrong event",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "three_techniques_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "difficulty_mapping_present",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "no_correct_answer_in_distractors",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "negative_question_structure_defined",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

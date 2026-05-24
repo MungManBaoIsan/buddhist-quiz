@@ -1,0 +1,5 @@
+This is a long explanation card with a paragraph-length answer — keyword match cannot reliably grade it. Use self-grade instead.
+
+For short factual cards: keyword match using an accept list of valid spellings and variants. Match and reveal the answer immediately.
+
+For long explanation cards like this renunciation card: active recall first — the user types what they remember before anything is revealed. On submit, reveal the model answer from the textbook. Then show self-grade buttons: "Got it" or "Review again". The user marks themselves based on their own recall.

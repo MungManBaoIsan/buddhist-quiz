@@ -1,0 +1,79 @@
+{
+  "prompt": "gamification-spec",
+  "timestamp": "2026-05-24T18:58:39.301992+00:00",
+  "cases_run": 2,
+  "avg_score": 0.618,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "design streak and XP system for Buddhist quiz"
+      },
+      "output": "Streak system: consecutive correct answers in the current session. Resets to zero on any wrong answer. Displays current streak and session-best. Calm flame icon that glows as the streak grows.\n\nXP system: 10 XP per correct answer plus a small streak bonus. 9 thematic level names: Seeker, Novice, Student, Disciple, Adept, Scholar, Sage, Elder, Enlightened. Shown as a level ring and XP progress bar. Level-up triggers a brief calm toast.\n\nTone: calm and thematic \u2014 gold on dark temple aesthetic. Serene language. No confetti or sound effects.",
+      "score": 0.412,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "all_four_mechanics_present",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "persistence_defined",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "per_user_isolation",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "calm_tone_specified",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "configure badge milestones and localStorage persistence"
+      },
+      "output": "9 milestone badges with specific unlock conditions:\n- First Step: first correct answer\n- Kindling: 5 correct in a row\n- Steady Flame: 10 correct in a row\n- Unbroken: 20 correct in a row\n- Diligent: 25 total correct\n- Devoted: 50 total correct\n- Halfway: 36 of 71 cards seen\n- Complete Path: all 71 cards seen\n- Flawless: 100% accuracy for the session\n\nPersistence via localStorage auto-save (no buttons, no prompts):\n- Persist: XP total, current level, best streak, earned badges\n- Do NOT persist: deck position, current session score, answered cards\n- Each user's data is stored only in their own browser \u2014 separate and independent per device",
+      "score": 0.824,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "all_four_mechanics_present",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "persistence_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "per_user_isolation",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "calm_tone_specified",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

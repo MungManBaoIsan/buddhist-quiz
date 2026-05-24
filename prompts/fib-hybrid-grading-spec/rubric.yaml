@@ -1,0 +1,35 @@
+prompt: fib-hybrid-grading-spec
+version: "1.0"
+criteria:
+  - name: distinguishes_card_types
+    description: Spec clearly separates short factual cards from long explanation cards
+    weight: 5
+    pass_condition: "'short' in output.lower() and ('long' in output.lower() or 'paragraph' in output.lower() or 'explanation' in output.lower())"
+
+  - name: includes_keyword_matching
+    description: Keyword match grading is described for short cards
+    weight: 5
+    pass_condition: "'keyword' in output.lower() or 'accept' in output.lower() or 'match' in output.lower()"
+
+  - name: includes_self_grading
+    description: Self-grading is described for long cards
+    weight: 4
+    pass_condition: "'self' in output.lower() or 'reveal' in output.lower() or 'self-grade' in output.lower() or 'mark' in output.lower()"
+
+  - name: active_recall_first
+    description: Active recall happens before the answer is revealed
+    weight: 4
+    pass_condition: "'before' in output.lower() or 'first' in output.lower() or 'recall' in output.lower()"
+
+test_cases:
+  - input: "grade a short factual card about Ananda"
+    expected_traits:
+      - mentions keyword matching
+      - mentions accept list or spelling variants
+      - does not require exact match
+
+  - input: "grade a long explanation card about renunciation"
+    expected_traits:
+      - reveals answer after the user types
+      - self-grading buttons shown
+      - active recall happens first

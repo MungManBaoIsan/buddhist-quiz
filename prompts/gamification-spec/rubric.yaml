@@ -1,0 +1,37 @@
+prompt: gamification-spec
+version: "1.0"
+criteria:
+  - name: all_four_mechanics_present
+    description: Streak, XP, levels, and badges are all described
+    weight: 5
+    pass_condition: "all(m in output.lower() for m in ['streak', 'xp', 'level', 'badge'])"
+
+  - name: persistence_defined
+    description: What is and is not persisted to localStorage is clearly specified
+    weight: 5
+    pass_condition: "'localstorage' in output.lower() or 'persist' in output.lower() or 'auto-save' in output.lower() or 'auto save' in output.lower()"
+
+  - name: per_user_isolation
+    description: Each user's data is isolated to their own device/browser
+    weight: 4
+    pass_condition: "'own' in output.lower() or 'separate' in output.lower() or 'independent' in output.lower() or 'device' in output.lower()"
+
+  - name: calm_tone_specified
+    description: The tone is explicitly described as calm, thematic, or Buddhist-aesthetic
+    weight: 3
+    pass_condition: "'calm' in output.lower() or 'thematic' in output.lower() or 'temple' in output.lower() or 'serene' in output.lower()"
+
+test_cases:
+  - input: "design streak and XP system for Buddhist quiz"
+    expected_traits:
+      - streak resets on wrong answer
+      - XP awarded per correct answer
+      - level names are thematic not generic
+      - calm visual style described
+
+  - input: "configure badge milestones and localStorage persistence"
+    expected_traits:
+      - 9 badges listed with specific unlock conditions
+      - XP level best-streak and badges persist
+      - deck position and session score do not persist
+      - no save button or prompts required

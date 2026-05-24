@@ -1,0 +1,79 @@
+{
+  "prompt": "mc-distractor-80-10-10-spec",
+  "timestamp": "2026-05-24T18:58:39.309373+00:00",
+  "cases_run": 2,
+  "avg_score": 0.382,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "create distractors for the five warning signs card"
+      },
+      "output": "Option C \u2014 Negative question. Which of the following is NOT one of the five warning signs of a dying deva?\n\nA. Their divine flowers wither. (real item)\nB. Their garments become somber. (real item)\nC. Their divine palace begins to crumble. (fabricated item \u2014 correct selection)\nD. Sweat flows from their armpits. (real item)\n\nThe fabricated item does not appear in the textbook. Students who know all five signs can identify the wrong one.",
+      "score": 0.471,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "three_techniques_defined",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "difficulty_mapping_present",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "no_correct_answer_in_distractors",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "negative_question_structure_defined",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "create distractors for the Ayusankhara location card"
+      },
+      "output": "Option A \u2014 Hand-crafted plausible distractors for the Ayusankhara location card.\n\nCorrect answer: At the Pavala Cetiya in Vesali.\n\nDistractors (never duplicate the correct answer):\n1. At the Capala Shrine in Rajagaha \u2014 similar terminology, wrong city\n2. At the Animisa Cetiya in Bodhgaya \u2014 plausible sacred site, wrong location\n3. At the Veluvana Grove in Rajagaha \u2014 real place from the same period, wrong event",
+      "score": 0.294,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "three_techniques_defined",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "difficulty_mapping_present",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "no_correct_answer_in_distractors",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "negative_question_structure_defined",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

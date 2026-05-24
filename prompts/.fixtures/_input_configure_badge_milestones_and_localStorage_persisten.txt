@@ -1,0 +1,18 @@
+The gamification system has four core mechanics: streak, XP, levels, and badges.
+
+9 milestone badges with specific unlock conditions:
+- First Step: first correct answer
+- Kindling: 5 correct in a row (streak milestone)
+- Steady Flame: 10 correct in a row
+- Unbroken: 20 correct in a row
+- Diligent: 25 total correct
+- Devoted: 50 total correct
+- Halfway: 36 of 71 cards seen
+- Complete Path: all 71 cards seen
+- Flawless: 100% accuracy for the session
+
+Persistence via localStorage auto-save (no buttons, no prompts). Persist: XP total, current level, best streak, earned badges. Do NOT persist: deck position, session score.
+
+Each user's data is stored only in their own browser — separate and independent per device.
+
+Tone: calm and thematic — gold on dark temple aesthetic. Serene language.

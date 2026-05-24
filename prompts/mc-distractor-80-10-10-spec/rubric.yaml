@@ -1,0 +1,35 @@
+prompt: mc-distractor-80-10-10-spec
+version: "1.0"
+criteria:
+  - name: three_techniques_defined
+    description: All three distractor techniques (A, B, C) are described
+    weight: 5
+    pass_condition: "('option a' in output.lower() or 'hand-craft' in output.lower() or 'plausible' in output.lower()) and ('option b' in output.lower() or 'fragment' in output.lower()) and ('option c' in output.lower() or 'negative' in output.lower() or 'which is not' in output.lower())"
+
+  - name: difficulty_mapping_present
+    description: Different difficulty levels map to different distractor types
+    weight: 4
+    pass_condition: "'easy' in output.lower() and ('hard' in output.lower() or 'medium' in output.lower())"
+
+  - name: no_correct_answer_in_distractors
+    description: Distractors must not duplicate or partially reproduce the correct answer
+    weight: 5
+    pass_condition: "'not' in output.lower() or 'never' in output.lower() or 'correct' in output.lower()"
+
+  - name: negative_question_structure_defined
+    description: Option C negative questions have a defined structure (fabricated item + 3 real items)
+    weight: 3
+    pass_condition: "'fabricat' in output.lower() or 'not appear' in output.lower() or 'which of the following is not' in output.lower()"
+
+test_cases:
+  - input: "create distractors for the five warning signs card"
+    expected_traits:
+      - identifies this as an Option C (negative question) card
+      - provides three real items and one fabricated item
+      - fabricated item sounds plausible
+
+  - input: "create distractors for the Ayusankhara location card"
+    expected_traits:
+      - identifies this as an Option A (hand-crafted) card
+      - three wrong answers use similar vocabulary to the correct answer
+      - no distractor duplicates the correct answer

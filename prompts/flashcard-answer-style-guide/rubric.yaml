@@ -1,0 +1,35 @@
+prompt: flashcard-answer-style-guide
+version: "1.0"
+criteria:
+  - name: no_preamble
+    description: Answer begins directly with content — not with filler like "The answer is" or "In this context"
+    weight: 5
+    pass_condition: "not any(output.lower().strip().startswith(p) for p in ['the answer is', 'in this case', 'in this context', 'as mentioned', 'note that', 'it should be noted'])"
+
+  - name: no_hedging
+    description: No hedging language present (it is said that, possibly, perhaps, some believe)
+    weight: 4
+    pass_condition: "not any(h in output.lower() for h in ['it is said', 'possibly', 'perhaps', 'some believe', 'tradition holds', 'it may be'])"
+
+  - name: has_content
+    description: Answer is substantive — at least 10 words
+    weight: 3
+    pass_condition: "len(output.strip().split()) >= 10"
+
+  - name: structured_if_multipart
+    description: Multi-part answers use a numbered list; single-fact answers are 1-3 sentences
+    weight: 3
+    pass_condition: "'1.' in output or '1)' in output or len([s for s in output.split('.') if s.strip()]) <= 4"
+
+test_cases:
+  - input: "five warning signs of a dying deva"
+    expected_traits:
+      - numbered list of five items
+      - no preamble before the first item
+      - no hedging language
+
+  - input: "Ayusankhara meaning and location performed"
+    expected_traits:
+      - Pali term present
+      - answer is 2-3 sentences maximum
+      - direct factual statement at the start

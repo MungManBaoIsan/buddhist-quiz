@@ -1,0 +1,15 @@
+This card uses Option A — hand-crafted plausible distractors. The three wrong answers are factually adjacent to the correct answer. Never duplicate the correct answer in any distractor.
+
+The distractor techniques used across the deck:
+- Option A (hand-crafted plausible distractors, 80%): similar vocabulary, plausible but wrong details.
+- Option B (fragment mixing, 10%): recombine real answer fragments.
+- Option C (negative questions, 10%): "Which of the following is NOT" — one fabricated item not in the textbook, never appearing in the correct answer.
+
+For Easy difficulty: cross-chapter random distractors. For Medium and Hard: Option A/B/C hand-crafted set.
+
+Correct answer: At the Pavala Cetiya in Vesali.
+
+Option A distractors (plausible but wrong — correct answer is never among them):
+1. At the Capala Shrine in Rajagaha — similar terminology, wrong city
+2. At the Animisa Cetiya in Bodhgaya — plausible sacred site, wrong location and event
+3. At the Veluvana Grove in Rajagaha — real place from the same period, wrong event

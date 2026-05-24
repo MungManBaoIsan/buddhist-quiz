@@ -1,0 +1,5 @@
+This card uses keyword match grading because it has a short factual answer (a single name). The system checks for any accepted term in the typed answer.
+
+For short cards like this: accept: ["Ananda", "Venerable Ananda"]. Match is case-insensitive. Reveal the full textbook answer after grading whether correct or not.
+
+For long explanation cards: show the question, require the user to type their recall first before the answer is revealed. Then self-grade with "Got it" or "Review again" buttons. Active recall must happen before reveal — this is the key rule for paragraph-length answers.

@@ -1,0 +1,29 @@
+{
+  "prompt": "fib-hybrid-grading-spec",
+  "timestamp": "2026-05-24T18:56:42.233644+00:00",
+  "cases_run": 2,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "grade a short factual card about Ananda"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "grade a long explanation card about renunciation"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

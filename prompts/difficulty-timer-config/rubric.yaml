@@ -1,0 +1,35 @@
+prompt: difficulty-timer-config
+version: "1.0"
+criteria:
+  - name: all_three_levels_defined
+    description: Easy, Medium, and Hard are all specified with distinct timer values
+    weight: 5
+    pass_condition: "all(d in output.lower() for d in ['easy', 'medium', 'hard'])"
+
+  - name: correct_timer_values
+    description: Timer values match the spec — 60s Easy, 40s Medium, 24s Hard
+    weight: 5
+    pass_condition: "'60' in output and '40' in output and '24' in output"
+
+  - name: flashcard_mode_untimed
+    description: Flashcard mode is explicitly excluded from timing
+    weight: 4
+    pass_condition: "'flashcard' in output.lower() or 'flash' in output.lower() or 'untimed' in output.lower()"
+
+  - name: timer_applies_to_mc_fib
+    description: Timer applies to Multiple Choice and Fill-in-Blank
+    weight: 3
+    pass_condition: "'multiple choice' in output.lower() or 'fill' in output.lower() or 'mc' in output.lower() or 'fib' in output.lower()"
+
+test_cases:
+  - input: "configure easy difficulty settings"
+    expected_traits:
+      - timer is 60 seconds
+      - distractors are cross-chapter
+      - flashcard mode is untimed
+
+  - input: "configure hard difficulty settings"
+    expected_traits:
+      - timer is 24 seconds
+      - hand-crafted distractors
+      - negative questions enabled

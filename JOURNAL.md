@@ -87,3 +87,45 @@ The quiz now has two purpose-built versions for two different study contexts —
 Built with help from Claude Code (Anthropic).
 
 ---
+
+## 2026-05-24 — Expanded the Buddhist Quiz from 39 to 71 cards with three study modes and a rewards system
+
+**Type:** Feature / Milestone
+
+**What I built or did**
+I took the existing 39-card mobile-first quiz app and expanded it significantly over one session. The deck now covers all chapters (Ch.1–13 plus an Extra question) with 71 unique flashcards. I added two new study modes — Multiple Choice and Fill-in-Blank — on top of the existing Flashcard mode. I also built a full gamification system with streaks, XP, levels, and milestone badges.
+
+**The key features added:**
+- Three study modes: Flashcard (for reading and absorbing), Multiple Choice (four options, auto-graded), Fill-in-Blank (keyword match for short cards, self-grading for long ones)
+- Three difficulty levels: Easy (60s timer, easier distractors), Medium (40s, hard distractors), Hard (24s, hand-crafted distractors and negative questions)
+- 71 cards: the original 39 plus new cards for Ch.1 (7 cards), Ch.2 (9 new cards), Ch.5 (1 new card), Ch.12 (11 new cards), Ch.13 (1 new card), and Extra (1 card)
+- Textbook-exact answers in Multiple Choice and Fill-in-Blank — answers are quoted directly from the Thai national exam textbook
+- Gamification: streaks, XP (10 per correct answer), 9 thematic levels (Seeker through Enlightened), 9 milestone badges, and calm encouraging messages
+- Per-user localStorage persistence for XP, level, best streak, and earned badges — each person who opens the link gets their own independent progress, stored only in their own browser
+- A "How to use" note explaining the two styles of answers (explanatory in Flashcard mode, textbook-exact in the other two modes)
+- Sidebar scrollbar added to the desktop version for long chapter lists
+
+**What I tried and then removed:**
+- Manual Save/Load buttons: I built these so users could save their deck position and return later. Removed after testing — it added complexity and felt out of place. The lesson: invisible auto-save (for rewards only) is better than visible buttons.
+- Full session persistence (deck position, score, answered cards): same issue. Simplified to persist only the reward state, not where you are in the deck.
+
+**Why I did it this way**
+The app is used by monks and Buddhist students preparing for the Thai national Buddhanubuddha Pravat exam. The exam is written, so students need to reproduce the exact textbook phrasing — not just recognise it. That is why Multiple Choice and Fill-in-Blank show the textbook-exact answers while Flashcard mode shows fuller explanatory text. Two styles, two purposes.
+
+**How it works (for the non-obvious parts)**
+The 80/10/10 distractor split for Multiple Choice: 80% of cards have hand-crafted wrong answers (factually adjacent to the correct one — similar Pali terms, similar numbers), 10% use answer-fragment mixing (real fragments recombined into wrong wholes), and 10% are negative "which is NOT" questions (one fabricated item among real ones). The fill-in-blank hybrid grader classifies each card as short-factual (keyword match with a diacritic-insensitive accept-list) or long-explanation (type-then-reveal-then-self-grade). The gamification uses the browser's built-in localStorage (a way for websites to save data directly on your device, without a server) so each person's progress is stored privately on their own phone or computer.
+
+**What this means for the app**
+The app is now a proper multi-mode study tool covering the full exam syllabus, not just a simple flashcard set. It can be shared with one link and every person who opens it gets their own account-free progress tracking.
+
+**What I learned**
+- How to design grading logic that handles short and long answers differently, rather than forcing one approach on everything
+- That localStorage is enough for simple per-user persistence without needing a server or accounts
+- That removing a feature (Save/Load) can make an app feel better, not worse — simplicity matters
+- How to write genuinely difficult multiple-choice wrong answers: they need to be factually adjacent, not just topically adjacent
+- That "make it fun" and "keep it calm" are not opposites — the gamification uses Buddhist-themed language and a temple aesthetic so rewards feel appropriate rather than jarring
+
+**References / Conversations**
+Built with help from Claude Code (Anthropic) in a single extended session. Prompt decisions documented in `/prompts/` — see the prompt library for the governing style guide, grading spec, and gamification spec.
+
+---

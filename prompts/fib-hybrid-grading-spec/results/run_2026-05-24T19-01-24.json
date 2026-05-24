@@ -1,0 +1,79 @@
+{
+  "prompt": "fib-hybrid-grading-spec",
+  "timestamp": "2026-05-24T19:01:24.968967+00:00",
+  "cases_run": 2,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "grade a short factual card about Ananda"
+      },
+      "output": "This card uses keyword match grading because it has a short factual answer (a single name). The system checks for any accepted term in the typed answer.\n\nFor short cards like this: accept: [\"Ananda\", \"Venerable Ananda\"]. Match is case-insensitive. Reveal the full textbook answer after grading whether correct or not.\n\nFor long explanation cards: show the question, require the user to type their recall first before the answer is revealed. Then self-grade with \"Got it\" or \"Review again\" buttons. Active recall must happen before reveal \u2014 this is the key rule for paragraph-length answers.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "distinguishes_card_types",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_keyword_matching",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_self_grading",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "active_recall_first",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "grade a long explanation card about renunciation"
+      },
+      "output": "This is a long explanation card with a paragraph-length answer \u2014 keyword match cannot reliably grade it. Use self-grade instead.\n\nFor short factual cards: keyword match using an accept list of valid spellings and variants. Match and reveal the answer immediately.\n\nFor long explanation cards like this renunciation card: active recall first \u2014 the user types what they remember before anything is revealed. On submit, reveal the model answer from the textbook. Then show self-grade buttons: \"Got it\" or \"Review again\". The user marks themselves based on their own recall.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "distinguishes_card_types",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_keyword_matching",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_self_grading",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "active_recall_first",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

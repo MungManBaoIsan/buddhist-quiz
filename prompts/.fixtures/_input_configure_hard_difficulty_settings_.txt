@@ -1,0 +1,16 @@
+The app has three difficulty levels: Easy, Medium, and Hard.
+
+Easy difficulty:
+- Timer: 60 seconds per question (Multiple Choice and Fill-in-Blank only)
+- Distractors: cross-chapter
+
+Medium difficulty:
+- Timer: 40 seconds per question
+- Distractors: hand-crafted plausible options and negative questions
+
+Hard difficulty:
+- Timer: 24 seconds per question (MC and FIB only)
+- Distractors: hand-crafted plausible options and negative questions
+- Timer expiry: marks card for review, reveals correct answer, auto-advances
+
+Flashcard mode is always untimed — timer applies to MC and FIB modes only, never Flashcard mode.

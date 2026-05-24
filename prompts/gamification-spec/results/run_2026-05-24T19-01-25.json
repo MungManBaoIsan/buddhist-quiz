@@ -1,0 +1,79 @@
+{
+  "prompt": "gamification-spec",
+  "timestamp": "2026-05-24T19:01:25.016596+00:00",
+  "cases_run": 2,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "design streak and XP system for Buddhist quiz"
+      },
+      "output": "The gamification system has four core mechanics: streak, XP, levels, and badges.\n\nStreak: consecutive correct answers. Resets on wrong answer. Calm flame icon that glows as the streak grows. Displays current and session-best streak.\n\nXP system: 10 XP per correct answer. 9 thematic level names: Seeker through Enlightened. Level ring and XP progress bar shown in sidebar.\n\nBadges: 9 milestone achievements earned during the session. Toast notification appears when each badge is unlocked.\n\nPersistence via localStorage auto-save after every answer. Persist: XP total, current level, best streak, earned badges. Do NOT persist: deck position or session score.\n\nEach user's data is stored only in their own browser \u2014 separate and independent per device.\n\nTone: calm and thematic \u2014 gold on dark temple aesthetic. Serene language. No confetti or sounds.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "all_four_mechanics_present",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "persistence_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "per_user_isolation",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "calm_tone_specified",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "configure badge milestones and localStorage persistence"
+      },
+      "output": "The gamification system has four core mechanics: streak, XP, levels, and badges.\n\n9 milestone badges with specific unlock conditions:\n- First Step: first correct answer\n- Kindling: 5 correct in a row (streak milestone)\n- Steady Flame: 10 correct in a row\n- Unbroken: 20 correct in a row\n- Diligent: 25 total correct\n- Devoted: 50 total correct\n- Halfway: 36 of 71 cards seen\n- Complete Path: all 71 cards seen\n- Flawless: 100% accuracy for the session\n\nPersistence via localStorage auto-save (no buttons, no prompts). Persist: XP total, current level, best streak, earned badges. Do NOT persist: deck position, session score.\n\nEach user's data is stored only in their own browser \u2014 separate and independent per device.\n\nTone: calm and thematic \u2014 gold on dark temple aesthetic. Serene language.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "all_four_mechanics_present",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "persistence_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "per_user_isolation",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "calm_tone_specified",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

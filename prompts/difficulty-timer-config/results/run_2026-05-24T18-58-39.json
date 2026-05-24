@@ -1,0 +1,79 @@
+{
+  "prompt": "difficulty-timer-config",
+  "timestamp": "2026-05-24T18:58:39.247821+00:00",
+  "cases_run": 2,
+  "avg_score": 0.412,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "configure easy difficulty settings"
+      },
+      "output": "Easy difficulty configuration:\n- Timer: 60 seconds per question\n- Multiple Choice distractors: cross-chapter (easy to eliminate by topic)\n- Fill-in-Blank grading: standard hybrid (keyword match for short cards, self-grade for long)\n- Flashcard mode: untimed \u2014 always\n- Purpose: gentle warm-up, builds familiarity with the content",
+      "score": 0.412,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "all_three_levels_defined",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "correct_timer_values",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "flashcard_mode_untimed",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "timer_applies_to_mc_fib",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "configure hard difficulty settings"
+      },
+      "output": "Hard difficulty configuration:\n- Timer: 24 seconds per question\n- Multiple Choice distractors: hand-crafted plausible distractors (Option A/B) and negative questions (Option C)\n- Fill-in-Blank grading: standard hybrid\n- Flashcard mode: untimed \u2014 timer does not apply to MC and FIB only\n- Timer expiry: marks card for review, reveals answer, auto-advances\n- Purpose: maximum challenge, closest to real exam time pressure",
+      "score": 0.412,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "all_three_levels_defined",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "correct_timer_values",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "flashcard_mode_untimed",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "timer_applies_to_mc_fib",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "prompt": "difficulty-timer-config",
+  "timestamp": "2026-05-24T19:01:24.959737+00:00",
+  "cases_run": 2,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "input": "configure easy difficulty settings"
+      },
+      "output": "The app has three difficulty levels: Easy, Medium, and Hard.\n\nEasy difficulty:\n- Timer: 60 seconds per question (Multiple Choice and Fill-in-Blank only)\n- Multiple Choice distractors: cross-chapter (easy to eliminate by topic)\n- Flashcard mode: untimed \u2014 always\n\nMedium difficulty:\n- Timer: 40 seconds per question (MC and FIB only)\n- Distractors: hand-crafted plausible options and negative questions\n\nHard difficulty:\n- Timer: 24 seconds per question (MC and FIB only)\n- Distractors: hand-crafted plausible options and negative questions\n\nFlashcard mode is untimed across all difficulty levels \u2014 it is for reading and absorbing, not testing under pressure.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "all_three_levels_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "correct_timer_values",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "flashcard_mode_untimed",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "timer_applies_to_mc_fib",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "inputs": {
+        "input": "configure hard difficulty settings"
+      },
+      "output": "The app has three difficulty levels: Easy, Medium, and Hard.\n\nEasy difficulty:\n- Timer: 60 seconds per question (Multiple Choice and Fill-in-Blank only)\n- Distractors: cross-chapter\n\nMedium difficulty:\n- Timer: 40 seconds per question\n- Distractors: hand-crafted plausible options and negative questions\n\nHard difficulty:\n- Timer: 24 seconds per question (MC and FIB only)\n- Distractors: hand-crafted plausible options and negative questions\n- Timer expiry: marks card for review, reveals correct answer, auto-advances\n\nFlashcard mode is always untimed \u2014 timer applies to MC and FIB modes only, never Flashcard mode.",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "all_three_levels_defined",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "correct_timer_values",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "flashcard_mode_untimed",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "timer_applies_to_mc_fib",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}
