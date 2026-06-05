@@ -2,8 +2,8 @@
 
 A multi-mode study app for the Thai national Buddhist Studies exam — covering **71 questions across all chapters (Ch.1–13 + Extra)**. Choose how you want to study: flip flashcards, test yourself with multiple choice, or challenge yourself with fill-in-the-blank. Available in a mobile-first touch version and a desktop dashboard with keyboard shortcuts.
 
-**Mobile (iPhone & Android):** https://mungmanbaoisan.github.io/buddhist-quiz/
-**Desktop (laptop & monitor):** https://mungmanbaoisan.github.io/buddhist-quiz/index_desktop.html
+**Mobile (iPhone & Android):** https://joshuablakemorekay.github.io/buddhist-quiz/
+**Desktop (laptop & monitor):** https://joshuablakemorekay.github.io/buddhist-quiz/index_desktop.html
 
 ---
 
@@ -84,8 +84,8 @@ Your progress is saved in your browser — no account needed. Each person who op
 ## How to Use It
 
 ### Live (no setup needed)
-- **Mobile:** https://mungmanbaoisan.github.io/buddhist-quiz/
-- **Desktop:** https://mungmanbaoisan.github.io/buddhist-quiz/index_desktop.html
+- **Mobile:** https://joshuablakemorekay.github.io/buddhist-quiz/
+- **Desktop:** https://joshuablakemorekay.github.io/buddhist-quiz/index_desktop.html
 
 Just open the link on any device. Your XP, level, best streak, and badges save automatically in your browser.
 
@@ -169,7 +169,7 @@ This folder is portfolio evidence of prompt engineering, not just vibe-coding.
 
 I'm Josh — a British Buddhist monk learning to code while living at a monastery in Thailand. I built this app to help myself (and other monks) study for the Thai national Buddhist Studies exam. It started as a local Flask app in PyCharm and grew into a fully deployed multi-mode study tool.
 
-GitHub: https://github.com/MungManBaoIsan
+GitHub: https://github.com/joshuablakemorekay
 
 ---
 

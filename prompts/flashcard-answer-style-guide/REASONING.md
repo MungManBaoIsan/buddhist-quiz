@@ -21,7 +21,7 @@ I was merging 17 new flashcard answers (Chapters 11–13) with 39 existing answe
 
 ## Outcome
 
-Shipped in the live app at https://mungmanbaoisan.github.io/buddhist-quiz/. All 71 cards now follow a consistent style in Flashcard mode. The textbook-exact answers (shorter, from the Thai textbook) are stored separately in a `tb` field used in Multiple Choice and Fill-in-Blank modes — so the style guide applies to the learning-mode text, not the testing-mode text.
+Shipped in the live app at https://joshuablakemorekay.github.io/buddhist-quiz/. All 71 cards now follow a consistent style in Flashcard mode. The textbook-exact answers (shorter, from the Thai textbook) are stored separately in a `tb` field used in Multiple Choice and Fill-in-Blank modes — so the style guide applies to the learning-mode text, not the testing-mode text.
 
 ## What I'd change next
 

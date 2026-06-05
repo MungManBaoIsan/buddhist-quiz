@@ -18,7 +18,7 @@ Flask runs a local Python server — great for development, but it can't be shar
 All the HTML, CSS, and JavaScript lives inside one `index.html`. The card flip uses a 3D CSS `transform: rotateY()` animation. Swipe navigation listens for `touchstart` and `touchend` JavaScript events and compares finger positions to detect a left or right swipe. Chapter filter pills sit in a horizontally scrollable row. Score tracking and the session-complete screen are all handled in plain JavaScript variables — no library needed.
 
 **What this means for the app**
-The app is now live at https://mungmanbaoisan.github.io/buddhist-quiz/ and works on iPhone and Android without any installation. It's a real, shareable study tool — I can send the link to other monks and they can open it straight from their phone.
+The app is now live at https://joshuablakemorekay.github.io/buddhist-quiz/ and works on iPhone and Android without any installation. It's a real, shareable study tool — I can send the link to other monks and they can open it straight from their phone.
 
 **What I learned**
 - How to deploy a static site (a site with no server) to GitHub Pages — push the HTML file to the right branch and it goes live automatically
@@ -48,7 +48,7 @@ This turned into more of a git detective session than expected. The feature bran
 Instead, I checked out `origin/main`, wrote `JOURNAL.md` and `README.md` at the repo root (so they appear correctly on GitHub), committed, pushed, and then deleted the feature branch both locally and from GitHub.
 
 **What this means for the app**
-The Buddhist Quiz repo on GitHub now has a proper, full README visible to anyone who visits the repo — covering features, tech stack, setup instructions, and the developer journey. The live app at `https://mungmanbaoisan.github.io/buddhist-quiz/` remained untouched throughout. The repo is clean — one branch (`main`), no stale feature branches.
+The Buddhist Quiz repo on GitHub now has a proper, full README visible to anyone who visits the repo — covering features, tech stack, setup instructions, and the developer journey. The live app at `https://joshuablakemorekay.github.io/buddhist-quiz/` remained untouched throughout. The repo is clean — one branch (`main`), no stale feature branches.
 
 **What I learned**
 - Always check where the git root is (`git rev-parse --show-toplevel`) before doing branch work — a repo rooted at the home directory behaves differently from one in a project folder

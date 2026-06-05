@@ -1,6 +1,6 @@
 # Prompt Library — Buddhist Quiz App
 
-[![Prompt Eval](https://github.com/MungManBaoIsan/buddhist-quiz/actions/workflows/prompt-eval.yml/badge.svg)](https://github.com/MungManBaoIsan/buddhist-quiz/actions/workflows/prompt-eval.yml)
+[![Prompt Eval](https://github.com/joshuablakemorekay/buddhist-quiz/actions/workflows/prompt-eval.yml/badge.svg)](https://github.com/joshuablakemorekay/buddhist-quiz/actions/workflows/prompt-eval.yml)
 
 This folder documents the key prompts used to build the **Buddhist Quiz — Buddhānubuddha Pavat** app. It exists as portfolio evidence of prompt engineering, evaluation, and iteration — not just "I asked Claude to do X."
 
